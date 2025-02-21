@@ -19,5 +19,12 @@ dependencyResolutionManagement {
     }
 }
 
+buildCache {
+    local {
+        isEnabled = true
+        directory = "${rootDir}/.build-cache"
+    }
+}
+
 rootProject.name = "Marketplace App"
 include(":app")
