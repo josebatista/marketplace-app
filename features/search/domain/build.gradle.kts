@@ -1,7 +1,3 @@
 plugins {
-    alias(libs.plugins.marketplace.android.library)
-}
-
-android {
-    namespace = "io.github.josebatista.domain"
+    alias(libs.plugins.marketplace.jvm.library)
 }

@@ -1,0 +1,10 @@
+package io.github.josebatista.marketplace.domain.usecase
+
+import io.github.josebatista.marketplace.domain.repository.SearchRepository
+import javax.inject.Inject
+
+internal class SearchUseCaseImpl @Inject constructor(
+    private val repository: SearchRepository
+) : SearchUseCase {
+    override suspend fun invoke(query: String): String = repository.invoke(query = query)
+}

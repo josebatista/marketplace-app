@@ -10,6 +10,9 @@ android {
 }
 
 dependencies {
+
+    implementation(projects.features.search.domain)
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
 

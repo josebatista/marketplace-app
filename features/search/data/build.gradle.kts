@@ -5,3 +5,7 @@ plugins {
 android {
     namespace = "io.github.josebatista.marketplace.data"
 }
+
+dependencies {
+    implementation(projects.features.search.domain)
+}
