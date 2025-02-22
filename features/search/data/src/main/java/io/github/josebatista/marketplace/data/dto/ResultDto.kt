@@ -1,11 +1,11 @@
-package io.github.josebatista.marketplace.data.model
+package io.github.josebatista.marketplace.data.dto
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonElement
 
 @Serializable
-internal data class Result(
+internal data class ResultDto(
     @SerialName("id") val id: String? = null,
     @SerialName("title") val title: String? = null,
     @SerialName("condition") val condition: String? = null,
@@ -23,18 +23,18 @@ internal data class Result(
     @SerialName("order_backend") val orderBackend: Int? = null,
     @SerialName("price") val price: Double? = null,
     @SerialName("original_price") val originalPrice: Double? = null,
-    @SerialName("sale_price") val salePrice: SalePrice? = null,
+    @SerialName("sale_price") val salePrice: SalePriceDto? = null,
     @SerialName("available_quantity") val availableQuantity: Int? = null,
     @SerialName("official_store_id") val officialStoreId: Int? = null,
     @SerialName("official_store_name") val officialStoreName: String? = null,
     @SerialName("use_thumbnail_id") val useThumbnailId: Boolean? = null,
     @SerialName("accepts_mercadopago") val acceptsMercadopago: Boolean? = null,
-    @SerialName("shipping") val shipping: Shipping? = null,
+    @SerialName("shipping") val shipping: ShippingDto? = null,
     @SerialName("stop_time") val stopTime: String? = null,
-    @SerialName("seller") val seller: Seller? = null,
-    @SerialName("address") val address: Address? = null,
-    @SerialName("attributes") val attributes: List<Attribute>? = null,
-    @SerialName("installments") val installments: Installments? = null,
+    @SerialName("seller") val seller: SellerDto? = null,
+    @SerialName("address") val address: AddressDto? = null,
+    @SerialName("attributes") val attributes: List<AttributeDto>? = null,
+    @SerialName("installments") val installments: InstallmentsDto? = null,
     @SerialName("winner_item_id") val winnerItemId: String? = null,
     @SerialName("catalog_listing") val catalogListing: Boolean? = null,
     @SerialName("discounts") val discounts: JsonElement? = null,
@@ -43,5 +43,5 @@ internal data class Result(
     @SerialName("inventory_id") val inventoryId: String? = null,
     @SerialName("installments_motors") val installmentsMotors: JsonElement? = null,
     @SerialName("variation_filters") val variationFilters: List<String>? = null,
-    @SerialName("variations_data") val variationsData: Map<String, VariationData>? = null,
+    @SerialName("variations_data") val variationsData: Map<String, VariationDataDto>? = null,
 )

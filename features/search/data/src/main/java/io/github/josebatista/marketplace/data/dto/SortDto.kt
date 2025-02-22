@@ -1,12 +1,10 @@
-package io.github.josebatista.marketplace.data.model
+package io.github.josebatista.marketplace.data.dto
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-internal data class Filter(
+internal data class SortDto(
     @SerialName("id") val id: String? = null,
     @SerialName("name") val name: String? = null,
-    @SerialName("type") val type: String? = null,
-    @SerialName("values") val values: List<FilterValue>? = null,
 )

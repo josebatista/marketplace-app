@@ -1,4 +1,4 @@
-package io.github.josebatista.marketplace.data.model
+package io.github.josebatista.marketplace.data.dto
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -6,10 +6,10 @@ import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonObject
 
 @Serializable
-internal data class SalePrice(
+internal data class SalePriceDto(
     @SerialName("price_id") val priceId: String? = null,
     @SerialName("amount") val amount: Double? = null,
-    @SerialName("conditions") val conditions: Conditions? = null,
+    @SerialName("conditions") val conditions: ConditionsDto? = null,
     @SerialName("currency_id") val currencyId: String? = null,
     @SerialName("exchange_rate") val exchangeRate: JsonElement? = null,
     @SerialName("payment_method_prices") val paymentMethodPrices: List<JsonElement>? = null,
