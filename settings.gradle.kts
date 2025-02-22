@@ -29,3 +29,6 @@ buildCache {
 
 rootProject.name = "Marketplace App"
 include(":app")
+include(":features:search:data")
+include(":features:search:domain")
+include(":features:search:presentation")
