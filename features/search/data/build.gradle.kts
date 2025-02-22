@@ -8,4 +8,5 @@ android {
 
 dependencies {
     implementation(projects.features.search.domain)
+    implementation(projects.core.network)
 }
