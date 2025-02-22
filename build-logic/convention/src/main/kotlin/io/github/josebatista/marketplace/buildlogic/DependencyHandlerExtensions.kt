@@ -15,3 +15,7 @@ fun DependencyHandler.androidTestImplementation(dependency: Provider<MinimalExte
 fun DependencyHandler.testImplementation(dependency: Provider<MinimalExternalModuleDependency>) {
     add("testImplementation", dependency)
 }
+
+fun DependencyHandler.debugImplementation(dependency: Provider<MinimalExternalModuleDependency>) {
+    add("debugImplementation", dependency)
+}
