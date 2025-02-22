@@ -18,6 +18,7 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
         with(target) {
             apply(plugin = libs.findPlugin("android.library").get().get().pluginId)
             apply(plugin = libs.findPlugin("kotlin.android").get().get().pluginId)
+            apply(plugin = libs.findPlugin("kotlin.serialization").get().get().pluginId)
             apply(plugin = libs.findPlugin("detekt").get().get().pluginId)
             apply(plugin = libs.findPlugin("marketplace-hilt").get().get().pluginId)
             extensions.configure<LibraryExtension> {
@@ -34,6 +35,7 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
             }
             dependencies {
                 implementation(libs.findLibrary("androidx.core.ktx").get())
+                implementation(libs.findLibrary("kotlin.serialization.json").get())
 
                 testImplementation(libs.findLibrary("google-truth").get())
                 testImplementation(libs.findLibrary("kotlin.coroutine.test").get())
