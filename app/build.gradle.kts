@@ -22,6 +22,10 @@ detekt {
 
 dependencies {
 
+    implementation(projects.features.search.data)
+    implementation(projects.features.search.domain)
+    implementation(projects.features.search.presentation)
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)

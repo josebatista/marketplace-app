@@ -27,7 +27,8 @@ buildCache {
     }
 }
 
-rootProject.name = "Marketplace App"
+rootProject.name = "MarketplaceApp"
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 include(":app")
 include(":features:search:data")
 include(":features:search:domain")
