@@ -21,6 +21,7 @@ dependencies {
     compileOnly(libs.android.gradlePlugin)
     compileOnly(libs.kotlin.gradlePlugin)
     compileOnly(libs.android.tools.common)
+    compileOnly(libs.compose.gradlePlugin)
 }
 
 tasks {
@@ -32,9 +33,25 @@ tasks {
 
 gradlePlugin {
     plugins {
+        register("androidApplicationCompose") {
+            id = libs.plugins.marketplace.android.application.compose.get().pluginId
+            implementationClass = "AndroidApplicationComposeConventionPlugin"
+        }
+        register("androidApplication") {
+            id = libs.plugins.marketplace.android.application.asProvider().get().pluginId
+            implementationClass = "AndroidApplicationConventionPlugin"
+        }
+        register("androidLibraryCompose") {
+            id = libs.plugins.marketplace.android.library.compose.get().pluginId
+            implementationClass = "AndroidLibraryComposeConventionPlugin"
+        }
         register("androidLibrary") {
-            id = libs.plugins.marketplace.android.library.get().pluginId
+            id = libs.plugins.marketplace.android.library.asProvider().get().pluginId
             implementationClass = "AndroidLibraryConventionPlugin"
+        }
+        register("hilt") {
+            id = libs.plugins.marketplace.hilt.get().pluginId
+            implementationClass = "HiltConventionPlugin"
         }
         register("jvmLibrary") {
             id = libs.plugins.marketplace.jvm.library.get().pluginId

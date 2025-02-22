@@ -16,15 +16,16 @@ import org.gradle.kotlin.dsl.dependencies
 class AndroidLibraryConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
-            apply(plugin = "com.android.library")
-            apply(plugin = "org.jetbrains.kotlin.android")
+            apply(plugin = libs.findPlugin("android.library").get().get().pluginId)
+            apply(plugin = libs.findPlugin("kotlin.android").get().get().pluginId)
+            apply(plugin = libs.findPlugin("kotlin.serialization").get().get().pluginId)
+            apply(plugin = libs.findPlugin("detekt").get().get().pluginId)
+            apply(plugin = libs.findPlugin("marketplace-hilt").get().get().pluginId)
             extensions.configure<LibraryExtension> {
                 configureKotlinAndroid(this)
                 defaultConfig.targetSdk = Config.TARGET_SDK
                 defaultConfig.testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
                 testOptions.animationsDisabled = true
-                // The resource prefix is derived from the module name,
-                // so resources inside ":core:module1" must be prefixed with "core_module1_"
                 resourcePrefix =
                     path.split("""\W""".toRegex()).drop(1).distinct().joinToString(separator = "_")
                         .lowercase() + "_"
@@ -33,13 +34,15 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
                 disableUnnecessaryAndroidTests(target)
             }
             dependencies {
-//                "androidTestImplementation"(libs.findLibrary("kotlin.test").get())
-//                "testImplementation"(libs.findLibrary("kotlin.test").get())
-//                "implementation"(libs.findLibrary("androidx.tracing.ktx").get())
+                implementation(libs.findLibrary("androidx.core.ktx").get())
+                implementation(libs.findLibrary("kotlin.serialization.json").get())
 
-                androidTestImplementation(libs.findLibrary("kotlin.test").get())
-                testImplementation(libs.findLibrary("kotlin.test").get())
-                implementation(libs.findLibrary("androidx.tracing.ktx").get())
+                testImplementation(libs.findLibrary("google-truth").get())
+                testImplementation(libs.findLibrary("kotlin.coroutine.test").get())
+                testImplementation(libs.findLibrary("mockk.android").get())
+                testImplementation(libs.findLibrary("mockk.android.agent").get())
+                testImplementation(libs.findLibrary("junit").get())
+                androidTestImplementation(libs.findLibrary("androidx.junit").get())
             }
         }
     }
