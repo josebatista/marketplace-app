@@ -49,6 +49,10 @@ gradlePlugin {
             id = libs.plugins.marketplace.android.library.asProvider().get().pluginId
             implementationClass = "AndroidLibraryConventionPlugin"
         }
+        register("hilt") {
+            id = libs.plugins.marketplace.hilt.get().pluginId
+            implementationClass = "HiltConventionPlugin"
+        }
         register("jvmLibrary") {
             id = libs.plugins.marketplace.jvm.library.get().pluginId
             implementationClass = "JvmLibraryConventionPlugin"

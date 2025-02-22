@@ -19,6 +19,7 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
             apply(plugin = libs.findPlugin("android.library").get().get().pluginId)
             apply(plugin = libs.findPlugin("kotlin.android").get().get().pluginId)
             apply(plugin = libs.findPlugin("detekt").get().get().pluginId)
+            apply(plugin = libs.findPlugin("marketplace-hilt").get().get().pluginId)
             extensions.configure<LibraryExtension> {
                 configureKotlinAndroid(this)
                 defaultConfig.targetSdk = Config.TARGET_SDK

@@ -12,6 +12,7 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
         with(target) {
             apply(plugin = libs.findPlugin("android.application").get().get().pluginId)
             apply(plugin = libs.findPlugin("kotlin.android").get().get().pluginId)
+            apply(plugin = libs.findPlugin("marketplace-hilt").get().get().pluginId)
             extensions.configure<ApplicationExtension> {
                 configureKotlinAndroid(this)
                 defaultConfig.targetSdk = Config.TARGET_SDK
