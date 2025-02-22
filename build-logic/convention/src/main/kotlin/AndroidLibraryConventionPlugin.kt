@@ -35,6 +35,10 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
             dependencies {
                 implementation(libs.findLibrary("androidx.core.ktx").get())
 
+                testImplementation(libs.findLibrary("google-truth").get())
+                testImplementation(libs.findLibrary("kotlin.coroutine.test").get())
+                testImplementation(libs.findLibrary("mockk.android").get())
+                testImplementation(libs.findLibrary("mockk.android.agent").get())
                 testImplementation(libs.findLibrary("junit").get())
                 androidTestImplementation(libs.findLibrary("androidx.junit").get())
             }

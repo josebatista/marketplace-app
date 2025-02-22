@@ -13,7 +13,10 @@ class JvmLibraryConventionPlugin : Plugin<Project> {
             apply(plugin = libs.findPlugin("marketplace-hilt").get().get().pluginId)
             configureKotlinJvm()
             dependencies {
+                testImplementation(libs.findLibrary("google-truth").get())
+                testImplementation(libs.findLibrary("kotlin.coroutine.test").get())
                 testImplementation(libs.findLibrary("kotlin.test").get())
+                testImplementation(libs.findLibrary("mockk").get())
             }
         }
     }
