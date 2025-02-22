@@ -1,12 +1,10 @@
 plugins {
-//    alias(libs.plugins.android.library)
-//    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.marketplace.android.library)
     alias(libs.plugins.marketplace.android.library.compose)
 }
 
 android {
-    namespace = "io.github.josebatista.marketplace.presentation"
+    namespace = "io.github.josebatista.marketplace.search.presentation"
 }
 
 dependencies {

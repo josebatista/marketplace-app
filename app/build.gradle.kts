@@ -21,7 +21,7 @@ detekt {
 }
 
 dependencies {
-
+    implementation(projects.core.domain)
     implementation(projects.features.search.data)
     implementation(projects.features.search.domain)
     implementation(projects.features.search.presentation)
