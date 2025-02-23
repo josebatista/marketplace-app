@@ -23,6 +23,7 @@ internal object NetworkModule {
     @Provides
     @Singleton
     fun provideKtorHttpClient(): HttpClient = HttpClient(OkHttp) {
+        expectSuccess = true
         install(ContentNegotiation) {
             json(Json {
                 ignoreUnknownKeys = true

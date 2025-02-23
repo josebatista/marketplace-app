@@ -8,24 +8,24 @@ public interface NetworkClient {
         parameters: Map<String, String>? = null,
         headers: Map<String, String>? = null,
         clazz: KClass<T>
-    ): T
+    ): NetworkClientResponse<T>
 
     public suspend fun <T : Any> post(
         url: String, body: Any? = null,
         headers: Map<String, String>? = null,
         clazz: KClass<T>,
-    ): T
+    ): NetworkClientResponse<T>
 
     public suspend fun <T : Any> put(
         url: String,
         body: Any? = null,
         headers: Map<String, String>? = null,
         clazz: KClass<T>,
-    ): T
+    ): NetworkClientResponse<T>
 
     public suspend fun <T : Any> delete(
         url: String,
         headers: Map<String, String>? = null,
         clazz: KClass<T>,
-    ): T
+    ): NetworkClientResponse<T>
 }

@@ -9,6 +9,6 @@ import javax.inject.Inject
 internal class SearchUseCaseImpl @Inject constructor(
     private val repository: SearchRepository
 ) : SearchUseCase {
-    override suspend fun invoke(query: String): Resource<ItemsSearchResponse, UiText> =
-        repository.invoke(query = query)
+    override suspend fun invoke(query: String, offset: Int): Resource<ItemsSearchResponse, UiText> =
+        repository.invoke(query = query, offset = offset)
 }
