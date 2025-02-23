@@ -13,7 +13,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.josebatista.marketplace.route.Route
-import io.github.josebatista.marketplace.search.presentation.SearchScreen
+import io.github.josebatista.marketplace.search.presentation.search.SearchScreen
 import io.github.josebatista.marketplace.ui.theme.MarketplaceAppTheme
 
 @AndroidEntryPoint

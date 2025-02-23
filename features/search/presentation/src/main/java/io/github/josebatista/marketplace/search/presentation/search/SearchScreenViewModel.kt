@@ -1,9 +1,10 @@
-package io.github.josebatista.marketplace.search.presentation
+package io.github.josebatista.marketplace.search.presentation.search
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.github.josebatista.marketplace.domain.UiText
+import io.github.josebatista.marketplace.search.presentation.R
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -18,7 +19,7 @@ internal class SearchScreenViewModel @Inject constructor() : ViewModel() {
     private val _state = MutableStateFlow(SearchScreenState())
     val state = _state.asStateFlow()
 
-    private val _uiEvent = MutableSharedFlow<UiEvent>()
+    private val _uiEvent = MutableSharedFlow<SearchUiEvent>()
     val uiEvent = _uiEvent.asSharedFlow()
 
     fun onEvent(event: SearchScreenEvent) {
@@ -32,7 +33,7 @@ internal class SearchScreenViewModel @Inject constructor() : ViewModel() {
         viewModelScope.launch {
             if (query.length < MIN_QUERY_LENGTH) {
                 _uiEvent.emit(
-                    UiEvent.ShowError(
+                    SearchUiEvent.ShowError(
                         UiText.StringResource(
                             R.string.features_search_presentation_min_length_search,
                             MIN_QUERY_LENGTH
@@ -40,7 +41,7 @@ internal class SearchScreenViewModel @Inject constructor() : ViewModel() {
                     )
                 )
             } else {
-                _uiEvent.emit(UiEvent.Search(query))
+                _uiEvent.emit(SearchUiEvent.Search(query))
             }
         }
     }

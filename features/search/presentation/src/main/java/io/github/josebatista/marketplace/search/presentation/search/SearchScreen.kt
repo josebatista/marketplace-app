@@ -1,4 +1,4 @@
-package io.github.josebatista.marketplace.search.presentation
+package io.github.josebatista.marketplace.search.presentation.search
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.Box
@@ -27,8 +27,8 @@ public fun SearchScreen(
     LaunchedEffect(Unit) {
         viewModel.uiEvent.collect { event ->
             when (event) {
-                is UiEvent.Search -> onSearchClick(event.query)
-                is UiEvent.ShowError -> {
+                is SearchUiEvent.Search -> onSearchClick(event.query)
+                is SearchUiEvent.ShowError -> {
                     Toast.makeText(
                         context,
                         event.message.asString(context),
