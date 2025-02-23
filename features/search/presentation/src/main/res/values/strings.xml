@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="features_search_presentation_search_text">buscar…</string>
+    <string name="features_search_presentation_min_length_search">Necessário pelo menos %1$d caracteres</string>
+</resources>

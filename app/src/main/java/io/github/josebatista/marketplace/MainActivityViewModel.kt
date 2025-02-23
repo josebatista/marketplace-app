@@ -15,7 +15,7 @@ internal class MainActivityViewModel @Inject constructor(
 
     internal fun onEvent() {
         viewModelScope.launch {
-            when (val result = searchUseCase("query")) {
+            when (val result = searchUseCase("motorola", 1)) {
                 is Resource.Error -> println("===> [RESULTADO: ${result.message}]")
                 is Resource.Success -> println("===> [RESULTADO: ${result.data}]")
             }

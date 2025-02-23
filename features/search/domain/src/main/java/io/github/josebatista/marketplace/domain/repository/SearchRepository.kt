@@ -5,5 +5,8 @@ import io.github.josebatista.marketplace.domain.UiText
 import io.github.josebatista.marketplace.domain.model.ItemsSearchResponse
 
 public interface SearchRepository {
-    public suspend operator fun invoke(query: String): Resource<ItemsSearchResponse, UiText>
+    public suspend operator fun invoke(
+        query: String,
+        offset: Int,
+    ): Resource<ItemsSearchResponse, UiText>
 }

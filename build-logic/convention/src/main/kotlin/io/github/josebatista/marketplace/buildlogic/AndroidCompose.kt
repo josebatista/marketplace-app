@@ -21,12 +21,21 @@ internal fun Project.configureAndroidCompose(
         dependencies {
             val bom = libs.findLibrary("androidx.compose.bom").get()
             implementation(platform(bom))
-            androidTestImplementation(platform(bom))
+            implementation(libs.findLibrary("androidx.activity.compose").get())
+            implementation(libs.findLibrary("androidx.ui").get())
+            implementation(libs.findLibrary("androidx.ui.graphics").get())
             implementation(libs.findLibrary("androidx.ui.tooling.preview").get())
+            implementation(libs.findLibrary("androidx.material3").get())
+
+            implementation(libs.findLibrary("androidx.lifecycle.runtime.ktx").get())
+            implementation(libs.findLibrary("androidx.lifecycle.viewmodel.compose").get())
+
+            androidTestImplementation(platform(bom))
             debugImplementation(libs.findLibrary("androidx.ui.tooling").get())
         }
 
-        @Suppress("UnstableApiUsage") testOptions {
+        @Suppress("UnstableApiUsage")
+        testOptions {
             unitTests {
                 // For Robolectric
                 isIncludeAndroidResources = true

@@ -10,6 +10,7 @@ class JvmLibraryConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             apply(plugin = libs.findPlugin("kotlin.jvm").get().get().pluginId)
+            apply(plugin = libs.findPlugin("marketplace-detekt").get().get().pluginId)
             apply(plugin = libs.findPlugin("marketplace-hilt").get().get().pluginId)
             configureKotlinJvm()
             dependencies {
