@@ -1,7 +1,6 @@
 plugins {
     alias(libs.plugins.marketplace.android.application)
     alias(libs.plugins.marketplace.android.application.compose)
-    alias(libs.plugins.detekt)
 }
 
 android {
@@ -14,28 +13,15 @@ android {
     }
 }
 
-detekt {
-    config.setFrom("$rootDir/config/detekt/detekt.yml")
-    buildUponDefaultConfig = true
-    parallel = true
-}
-
 dependencies {
     implementation(projects.core.domain)
+    implementation(projects.core.ui)
     implementation(projects.features.search.data)
     implementation(projects.features.search.domain)
     implementation(projects.features.search.presentation)
 
-    implementation(libs.androidx.hilt.navigation.compose)
+    implementation(libs.androidx.navigation)
 
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.activity.compose)
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.ui)
-    implementation(libs.androidx.ui.graphics)
-    implementation(libs.androidx.ui.tooling.preview)
-    implementation(libs.androidx.material3)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
