@@ -14,6 +14,9 @@ dependencies {
     implementation(projects.features.search.data)
     implementation(projects.features.search.domain)
 
+    implementation(libs.coil.compose)
+    implementation(libs.coil.network.okhttp)
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.paging.runtime)
