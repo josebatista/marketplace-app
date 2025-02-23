@@ -9,10 +9,9 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import io.github.josebatista.marketplace.search.presentation.components.SearchBar
 
 @Composable
@@ -21,7 +20,7 @@ public fun SearchScreen(
     onSearchClick: (String) -> Unit,
 ) {
     val context = LocalContext.current
-    val viewModel: SearchScreenViewModel = viewModel()
+    val viewModel: SearchScreenViewModel = hiltViewModel()
     val state = viewModel.state.collectAsStateWithLifecycle()
 
     LaunchedEffect(Unit) {
@@ -51,10 +50,4 @@ public fun SearchScreen(
             onSearch = { viewModel.onEvent(SearchScreenEvent.OnSearch(it)) }
         )
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-private fun SearchScreenPreview() {
-    SearchScreen(onSearchClick = {})
 }
