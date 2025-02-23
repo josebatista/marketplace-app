@@ -22,6 +22,7 @@ dependencies {
     compileOnly(libs.kotlin.gradlePlugin)
     compileOnly(libs.android.tools.common)
     compileOnly(libs.compose.gradlePlugin)
+    compileOnly(libs.detekt.gradlePlugin)
 }
 
 tasks {
@@ -56,6 +57,10 @@ gradlePlugin {
         register("jvmLibrary") {
             id = libs.plugins.marketplace.jvm.library.get().pluginId
             implementationClass = "JvmLibraryConventionPlugin"
+        }
+        register("detekt") {
+            id = libs.plugins.marketplace.detekt.get().pluginId
+            implementationClass = "DetektConventionPlugin"
         }
     }
 }
