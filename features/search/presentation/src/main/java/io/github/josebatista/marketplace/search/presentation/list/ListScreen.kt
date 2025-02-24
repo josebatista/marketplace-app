@@ -6,10 +6,12 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -26,8 +28,16 @@ public fun ListScreen(
     onItemClick: (Result) -> Unit,
 ) {
     val viewModel: ListScreenViewModel = hiltViewModel()
-    val listState = rememberLazyListState()
-    val lazyPagingItems = viewModel.search(query).collectAsLazyPagingItems()
+
+    LaunchedEffect(query) {
+        viewModel.setQuery(query)
+    }
+
+    val listState = rememberSaveable(saver = LazyListState.Saver) {
+        LazyListState()
+    }
+
+    val lazyPagingItems = viewModel.searchResults.collectAsLazyPagingItems()
 
     LazyColumn(
         state = listState,

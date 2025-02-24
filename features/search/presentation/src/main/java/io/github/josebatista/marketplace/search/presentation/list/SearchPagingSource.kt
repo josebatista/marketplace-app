@@ -13,7 +13,7 @@ internal class SearchPagingSource(
 ) : PagingSource<Int, Result>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Result> {
-        val offset = params.key ?: 0
+        val offset = params.key ?: INITIAL_OFFSET
         return runCatching {
             val response: ItemsSearchResponse = when (
                 val result = searchUseCase(
@@ -26,7 +26,7 @@ internal class SearchPagingSource(
             }
             val items = response.results
             val nextKey =
-                if (offset + params.loadSize >= (response.paging?.total ?: 0)) {
+                if (offset + params.loadSize >= (response.paging?.total ?: INITIAL_OFFSET)) {
                     null
                 } else {
                     offset + 1
@@ -34,7 +34,7 @@ internal class SearchPagingSource(
             items?.let {
                 LoadResult.Page(
                     data = it,
-                    prevKey = if (offset == 0) null else offset - 1,
+                    prevKey = if (offset == INITIAL_OFFSET) null else offset - 1,
                     nextKey = nextKey
                 )
             } ?: LoadResult.Invalid()
@@ -48,5 +48,9 @@ internal class SearchPagingSource(
             state.closestPageToPosition(anchor)?.prevKey?.plus(1)
                 ?: state.closestPageToPosition(anchor)?.nextKey?.minus(1)
         }
+    }
+
+    private companion object {
+        const val INITIAL_OFFSET = 0
     }
 }

@@ -9,6 +9,7 @@ import io.github.josebatista.marketplace.domain.repository.SearchRepository
 import io.github.josebatista.marketplace.network.NetworkClient
 import io.github.josebatista.marketplace.network.NetworkClientResponse
 import io.github.josebatista.marketplace.network.get
+import io.github.josebatista.marketplace.search.data.BuildConfig
 import javax.inject.Inject
 
 internal class SearchRepositoryImpl @Inject constructor(
@@ -17,7 +18,7 @@ internal class SearchRepositoryImpl @Inject constructor(
     override suspend fun invoke(query: String, offset: Int): Resource<ItemsSearchResponse, UiText> =
         runCatching {
             val response: NetworkClientResponse<ItemsSearchResponseDto> = networkClient.get(
-                url = "https://api.mercadolibre.com/sites/MLB/search",
+                url = BuildConfig.BASE_URL + "/sites/MLB/search",
                 parameters = mapOf("q" to query, "offset" to offset.toString()),
             )
             return when (response) {
