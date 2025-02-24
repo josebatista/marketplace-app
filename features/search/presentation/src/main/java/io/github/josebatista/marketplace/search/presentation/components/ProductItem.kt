@@ -23,7 +23,7 @@ import coil3.compose.rememberAsyncImagePainter
 import coil3.request.ImageRequest
 import io.github.josebatista.marketplace.domain.model.Attribute
 import io.github.josebatista.marketplace.domain.model.Result
-import io.github.josebatista.marketplace.ui.theme.MarketplaceAppTheme
+import io.github.josebatista.marketplace.presentation.theme.MarketplaceAppTheme
 
 @Composable
 internal fun ProductItem(
@@ -77,7 +77,7 @@ internal fun ProductItem(
 @Preview(showBackground = true)
 @Composable
 private fun ProductItemPreview() {
-    MarketplaceAppTheme {
+    io.github.josebatista.marketplace.presentation.theme.MarketplaceAppTheme {
         ProductItem(
             product = Result(
                 title = "Product title adfasdfasdfasdfasdfads",

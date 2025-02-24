@@ -30,9 +30,9 @@ buildCache {
 rootProject.name = "MarketplaceApp"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 include(":app")
-include(":core:network")
+include(":core:data")
+include(":core:domain")
+include(":core:presentation")
 include(":features:search:data")
 include(":features:search:domain")
 include(":features:search:presentation")
-include(":core:domain")
-include(":core:ui")
