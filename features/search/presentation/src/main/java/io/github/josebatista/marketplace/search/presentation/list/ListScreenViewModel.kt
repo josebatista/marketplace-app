@@ -7,7 +7,9 @@ import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.github.josebatista.marketplace.domain.usecase.SearchUseCase
+import io.github.josebatista.marketplace.search.presentation.list.util.ListScrollPosition
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.flatMapLatest
 import javax.inject.Inject
@@ -16,9 +18,27 @@ import javax.inject.Inject
 internal class ListScreenViewModel @Inject constructor(
     private val searchUseCase: SearchUseCase
 ) : ViewModel() {
+
+    private val _scrollPosition = MutableStateFlow(ListScrollPosition())
+    val scrollPosition = _scrollPosition.asStateFlow()
     private val _query = MutableStateFlow("")
-    fun setQuery(query: String) {
+
+    fun onEvent(event: ListScreenEvent) {
+        when (event) {
+            is ListScreenEvent.OnQueryChange -> setQuery(query = event.query)
+            is ListScreenEvent.OnScrollPositionChange -> updateScrollPosition(
+                index = event.index,
+                offset = event.offset
+            )
+        }
+    }
+
+    private fun setQuery(query: String) {
         _query.value = query
+    }
+
+    private fun updateScrollPosition(index: Int, offset: Int) {
+        _scrollPosition.value = ListScrollPosition(index, offset)
     }
 
     val searchResults = _query
