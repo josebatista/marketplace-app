@@ -1,4 +1,4 @@
-package io.github.josebatista.logging
+package io.github.josebatista.marketplace.logging
 
 import javax.inject.Inject
 import javax.inject.Singleton
