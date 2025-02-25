@@ -5,7 +5,10 @@ public suspend inline fun <reified T : Any> NetworkClient.get(
     parameters: Map<String, String>? = null,
     headers: Map<String, String>? = null,
 ): NetworkClientResponse<T> = get(
-    url = url, parameters = parameters, headers = headers, clazz = T::class
+    url = url,
+    parameters = parameters,
+    headers = headers,
+    clazz = T::class
 )
 
 public suspend inline fun <reified T : Any> NetworkClient.post(

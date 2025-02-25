@@ -21,7 +21,7 @@ internal class SearchPagingSource(
                     offset = offset
                 )
             ) {
-                is Resource.Error -> return LoadResult.Invalid()
+                is Resource.Error -> return LoadResult.Error(Exception("Error!"))
                 is Resource.Success -> result.data
             }
             val items = response.results
@@ -37,7 +37,7 @@ internal class SearchPagingSource(
                     prevKey = if (offset == INITIAL_OFFSET) null else offset - 1,
                     nextKey = nextKey
                 )
-            } ?: LoadResult.Invalid()
+            } ?: LoadResult.Error(Exception("Error!!"))
         }.getOrElse {
             LoadResult.Error(it)
         }
