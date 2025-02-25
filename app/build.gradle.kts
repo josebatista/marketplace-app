@@ -14,7 +14,9 @@ android {
 }
 
 dependencies {
+    implementation(projects.core.data)
     implementation(projects.core.domain)
+    implementation(projects.core.logging)
     implementation(projects.core.presentation)
     implementation(projects.features.search.data)
     implementation(projects.features.search.domain)

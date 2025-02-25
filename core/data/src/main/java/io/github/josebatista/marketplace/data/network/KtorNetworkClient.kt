@@ -2,6 +2,7 @@ package io.github.josebatista.marketplace.data.network
 
 import io.github.josebatista.marketplace.data.R
 import io.github.josebatista.marketplace.domain.UiText
+import io.github.josebatista.marketplace.logging.Logger
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.plugins.ResponseException
@@ -21,7 +22,8 @@ import kotlin.reflect.KClass
 
 @Singleton
 internal class KtorNetworkClient @Inject constructor(
-    private val client: HttpClient
+    private val client: HttpClient,
+    private val logger: Logger
 ) : NetworkClient {
 
     override suspend fun <T : Any> get(
@@ -30,11 +32,14 @@ internal class KtorNetworkClient @Inject constructor(
         headers: Map<String, String>?,
         clazz: KClass<T>,
     ): NetworkClientResponse<T> = safeCall {
+        logger.sendLog("GET request to $url")
         val response = client.get(url) {
             parameters?.forEach { (key, value) ->
+                logger.sendLog("Parameter [$key] = $value")
                 parameter(key, value)
             }
             headers?.forEach { (key, value) ->
+                logger.sendLog("Header [$key] = $value")
                 header(key, value)
             }
         }
@@ -50,11 +55,14 @@ internal class KtorNetworkClient @Inject constructor(
         headers: Map<String, String>?,
         clazz: KClass<T>,
     ): NetworkClientResponse<T> = safeCall {
+        logger.sendLog("POST request to $url")
         val response = client.post(url) {
             headers?.forEach { (key, value) ->
+                logger.sendLog("Header [$key] = $value")
                 header(key, value)
             }
             if (body != null) {
+                logger.sendLog("Body = $body")
                 setBody(body)
             }
         }
@@ -70,11 +78,14 @@ internal class KtorNetworkClient @Inject constructor(
         headers: Map<String, String>?,
         clazz: KClass<T>,
     ): NetworkClientResponse<T> = safeCall {
+        logger.sendLog("PUT request to $url")
         val response = client.put(url) {
             headers?.forEach { (key, value) ->
+                logger.sendLog("Header [$key] = $value")
                 header(key, value)
             }
             if (body != null) {
+                logger.sendLog("Body = $body")
                 setBody(body)
             }
         }
@@ -89,8 +100,10 @@ internal class KtorNetworkClient @Inject constructor(
         headers: Map<String, String>?,
         clazz: KClass<T>,
     ): NetworkClientResponse<T> = safeCall {
+        logger.sendLog("DELETE request to $url")
         val response = client.delete(url) {
             headers?.forEach { (key, value) ->
+                logger.sendLog("Header [$key] = $value")
                 header(key, value)
             }
         }
@@ -111,6 +124,7 @@ internal class KtorNetworkClient @Inject constructor(
             } else {
                 INVALID_HTTP_CODE
             }
+            logger.sendLog("Error: ${it.localizedMessage}")
             val message = it.message?.let { message ->
                 UiText.DynamicText(message)
             } ?: UiText.StringResource(R.string.core_network_generic_error)

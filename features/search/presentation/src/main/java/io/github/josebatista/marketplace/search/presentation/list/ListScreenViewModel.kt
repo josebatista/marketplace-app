@@ -8,6 +8,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.github.josebatista.marketplace.domain.usecase.SearchUseCase
+import io.github.josebatista.marketplace.logging.Logger
 import io.github.josebatista.marketplace.search.presentation.list.util.ListScrollPosition
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -16,6 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 internal class ListScreenViewModel @Inject constructor(
     private val searchUseCase: SearchUseCase,
+    logger: Logger,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
@@ -30,6 +32,10 @@ internal class ListScreenViewModel @Inject constructor(
 
     private val _scrollPosition = MutableStateFlow(ListScrollPosition())
     val scrollPosition = _scrollPosition.asStateFlow()
+
+    init {
+        logger.sendLog("Iniciando consulta de produtos para a query: $query")
+    }
 
     fun onEvent(event: ListScreenEvent) {
         when (event) {

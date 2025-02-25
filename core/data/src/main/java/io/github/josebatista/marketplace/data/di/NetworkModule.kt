@@ -4,6 +4,8 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import io.github.josebatista.marketplace.data.network.KtorNetworkClient
+import io.github.josebatista.marketplace.data.network.NetworkClient
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.okhttp.OkHttp
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
@@ -14,6 +16,7 @@ import io.ktor.client.plugins.logging.Logging
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 import javax.inject.Singleton
+import io.github.josebatista.marketplace.logging.Logger as MarketplaceLogger
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -24,11 +27,13 @@ internal object NetworkModule {
     fun provideKtorHttpClient(): HttpClient = HttpClient(OkHttp) {
         expectSuccess = true
         install(ContentNegotiation) {
-            json(Json {
-                ignoreUnknownKeys = true
-                isLenient = true
-                encodeDefaults = false
-            })
+            json(
+                Json {
+                    ignoreUnknownKeys = true
+                    isLenient = true
+                    encodeDefaults = false
+                }
+            )
         }
         install(Logging) {
             logger = Logger.ANDROID
@@ -38,6 +43,6 @@ internal object NetworkModule {
 
     @Provides
     @Singleton
-    fun bindNetworkClient(httpClient: HttpClient): io.github.josebatista.marketplace.data.network.NetworkClient =
-        io.github.josebatista.marketplace.data.network.KtorNetworkClient(httpClient)
+    fun provideNetworkClient(httpClient: HttpClient, logger: MarketplaceLogger): NetworkClient =
+        KtorNetworkClient(httpClient, logger)
 }
