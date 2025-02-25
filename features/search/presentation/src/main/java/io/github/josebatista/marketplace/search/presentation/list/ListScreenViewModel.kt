@@ -19,7 +19,6 @@ internal class ListScreenViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-
     private val query: String = savedStateHandle.get<String>("query").orEmpty()
 
     val searchResults = Pager(
