@@ -2,4 +2,7 @@
 <resources>
     <string name="features_search_presentation_search_text">buscar…</string>
     <string name="features_search_presentation_min_length_search">Necessário pelo menos %1$d caracteres</string>
+    <string name="features_search_presentation_original_price">Original price: %1$s</string>
+    <string name="features_search_presentation_price">Price: %1$s</string>
+    <string name="features_search_presentation_waiting_for_items_message">Waiting for items to load from the backend</string>
 </resources>

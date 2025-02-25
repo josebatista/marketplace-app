@@ -11,10 +11,12 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.toRoute
 import dagger.hilt.android.AndroidEntryPoint
-import io.github.josebatista.marketplace.route.Route
-import io.github.josebatista.marketplace.search.presentation.SearchScreen
-import io.github.josebatista.marketplace.ui.theme.MarketplaceAppTheme
+import io.github.josebatista.marketplace.presentation.route.Route
+import io.github.josebatista.marketplace.presentation.theme.MarketplaceAppTheme
+import io.github.josebatista.marketplace.search.presentation.AdaptiveListDetailPanel
+import io.github.josebatista.marketplace.search.presentation.search.SearchScreen
 
 @AndroidEntryPoint
 public class MainActivity : ComponentActivity() {
@@ -32,9 +34,16 @@ public class MainActivity : ComponentActivity() {
                     ) {
                         composable<Route.SearchRoute> {
                             SearchScreen { query ->
-                                println("[NAVIGATE TO $query]")
-//                            navController.navigate(it)
+                                navController.navigate(
+                                    Route.ListScreen(
+                                        query = query
+                                    )
+                                )
                             }
+                        }
+                        composable<Route.ListScreen> { backStackEntry ->
+                            val route = backStackEntry.toRoute<Route.ListScreen>()
+                            AdaptiveListDetailPanel(query = route.query)
                         }
                     }
                 }

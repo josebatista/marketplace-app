@@ -29,6 +29,7 @@ internal fun Project.configureAndroidCompose(
 
             implementation(libs.findLibrary("androidx.lifecycle.runtime.ktx").get())
             implementation(libs.findLibrary("androidx.lifecycle.viewmodel.compose").get())
+            implementation(libs.findLibrary("androidx.hilt.navigation.compose").get())
 
             androidTestImplementation(platform(bom))
             debugImplementation(libs.findLibrary("androidx.ui.tooling").get())
