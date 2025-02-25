@@ -70,7 +70,9 @@ internal fun ListScreen(
             .fillMaxSize()
             .padding(16.dp)
     ) {
-        if (lazyPagingItems.loadState.refresh == LoadState.Loading) {
+        if (lazyPagingItems.loadState.hasError) {
+            item { Text(text = "Erro ao carregar os dados, tente novamente mais tarde.") }
+        } else if (lazyPagingItems.loadState.refresh == LoadState.Loading) {
             item {
                 Refresh()
             }

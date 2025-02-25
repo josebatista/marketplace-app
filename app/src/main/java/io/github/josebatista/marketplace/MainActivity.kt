@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.getValue
@@ -48,7 +49,11 @@ public class MainActivity : ComponentActivity() {
                 val isConnected by viewModel.isConnected.collectAsStateWithLifecycle()
 
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Column(modifier = Modifier.padding(innerPadding)) {
+                    Column(
+                        modifier = Modifier
+                            .padding(innerPadding)
+                            .statusBarsPadding()
+                    ) {
                         if (!isConnected) {
                             Box(
                                 modifier = Modifier
