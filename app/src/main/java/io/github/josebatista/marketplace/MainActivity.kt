@@ -15,7 +15,7 @@ import androidx.navigation.toRoute
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.josebatista.marketplace.presentation.route.Route
 import io.github.josebatista.marketplace.presentation.theme.MarketplaceAppTheme
-import io.github.josebatista.marketplace.search.presentation.list.ListScreen
+import io.github.josebatista.marketplace.search.presentation.AdaptiveListDetailPanel
 import io.github.josebatista.marketplace.search.presentation.search.SearchScreen
 
 @AndroidEntryPoint
@@ -42,11 +42,8 @@ public class MainActivity : ComponentActivity() {
                             }
                         }
                         composable<Route.ListScreen> { backStackEntry ->
-                            val route =
-                                backStackEntry.toRoute<Route.ListScreen>()
-                            ListScreen(query = route.query) { item ->
-//                                navController.navigate(Route.DetailScreen(product = item))
-                            }
+                            val route = backStackEntry.toRoute<Route.ListScreen>()
+                            AdaptiveListDetailPanel(query = route.query)
                         }
                     }
                 }

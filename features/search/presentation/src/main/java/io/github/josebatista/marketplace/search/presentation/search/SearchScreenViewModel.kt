@@ -5,10 +5,10 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.github.josebatista.marketplace.domain.UiText
 import io.github.josebatista.marketplace.search.presentation.R
-import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -19,8 +19,8 @@ internal class SearchScreenViewModel @Inject constructor() : ViewModel() {
     private val _state = MutableStateFlow(SearchScreenState())
     val state = _state.asStateFlow()
 
-    private val _uiEvent = MutableSharedFlow<SearchUiEvent>()
-    val uiEvent = _uiEvent.asSharedFlow()
+    private val _uiEvent = Channel<SearchUiEvent>()
+    val uiEvent = _uiEvent.receiveAsFlow()
 
     fun onEvent(event: SearchScreenEvent) {
         when (event) {
@@ -32,7 +32,7 @@ internal class SearchScreenViewModel @Inject constructor() : ViewModel() {
     private fun search(query: String) {
         viewModelScope.launch {
             if (query.length < MIN_QUERY_LENGTH) {
-                _uiEvent.emit(
+                _uiEvent.send(
                     SearchUiEvent.ShowError(
                         UiText.StringResource(
                             R.string.features_search_presentation_min_length_search,
@@ -41,7 +41,7 @@ internal class SearchScreenViewModel @Inject constructor() : ViewModel() {
                     )
                 )
             } else {
-                _uiEvent.emit(SearchUiEvent.Search(query))
+                _uiEvent.send(SearchUiEvent.Search(query))
             }
         }
     }

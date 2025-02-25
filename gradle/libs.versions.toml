@@ -1,5 +1,6 @@
 [versions]
 activityCompose = "1.10.0"
+adaptiveNavigation = "1.0.0"
 appcompat = "1.7.0"
 agp = "8.8.1"
 androidTools = "31.8.1"
@@ -25,6 +26,7 @@ mockk = "1.13.16"
 pagingVersion = "3.3.6"
 
 [libraries]
+androidx-adaptive-navigation = { module = "androidx.compose.material3.adaptive:adaptive-navigation", version.ref = "adaptiveNavigation" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }

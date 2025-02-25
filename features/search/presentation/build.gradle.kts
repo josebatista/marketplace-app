@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.marketplace.android.library)
     alias(libs.plugins.marketplace.android.library.compose)
+    id("kotlin-parcelize")
 }
 
 android {
@@ -8,6 +9,9 @@ android {
 }
 
 dependencies {
+
+    implementation(libs.androidx.adaptive.navigation)
+
     implementation(projects.core.presentation)
     implementation(projects.core.domain)
 

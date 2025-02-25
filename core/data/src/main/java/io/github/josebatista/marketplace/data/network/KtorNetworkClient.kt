@@ -1,7 +1,7 @@
 package io.github.josebatista.marketplace.data.network
 
+import io.github.josebatista.marketplace.data.R
 import io.github.josebatista.marketplace.domain.UiText
-import io.github.josebatista.marketplace.network.R
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.plugins.ResponseException

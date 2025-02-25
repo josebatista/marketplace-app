@@ -16,23 +16,20 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.rememberAsyncImagePainter
 import coil3.request.ImageRequest
-import io.github.josebatista.marketplace.domain.model.Attribute
-import io.github.josebatista.marketplace.domain.model.Result
-import io.github.josebatista.marketplace.presentation.theme.MarketplaceAppTheme
+import io.github.josebatista.marketplace.search.presentation.model.ProductUiItem
 
 @Composable
 internal fun ProductItem(
+    product: ProductUiItem,
     modifier: Modifier = Modifier,
-    product: Result,
 ) {
     val painter = rememberAsyncImagePainter(
         model = ImageRequest.Builder(LocalContext.current)
-            .data(product.thumbnail?.trim()?.replace("http://", "https://"))
+            .data(product.thumbnail)
             .build(),
     )
     Row(
@@ -61,28 +58,15 @@ internal fun ProductItem(
         ) {
             Text(
                 modifier = Modifier.fillMaxWidth(),
-                text = product.attributes?.first { it.id?.lowercase() == "brand" }?.valueName.orEmpty(),
+                text = product.attributes["BRAND"].orEmpty(),
                 fontWeight = FontWeight.Bold,
                 fontSize = 18.sp
             )
             Text(
                 modifier = Modifier.fillMaxWidth(),
-                text = product.title.orEmpty(),
+                text = product.title,
                 fontSize = 12.sp
             )
         }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-private fun ProductItemPreview() {
-    io.github.josebatista.marketplace.presentation.theme.MarketplaceAppTheme {
-        ProductItem(
-            product = Result(
-                title = "Product title adfasdfasdfasdfasdfads",
-                attributes = listOf(Attribute(id = "brand", valueName = "XPTO"))
-            )
-        )
     }
 }

@@ -3,7 +3,15 @@ plugins {
 }
 
 android {
-    namespace = "io.github.josebatista.marketplace.network"
+    namespace = "io.github.josebatista.marketplace.data"
+
+    defaultConfig {
+        buildConfigField("String", "BASE_URL", "\"https://api.mercadolibre.com/\"")
+    }
+
+    buildFeatures {
+        buildConfig = true
+    }
 }
 
 dependencies {

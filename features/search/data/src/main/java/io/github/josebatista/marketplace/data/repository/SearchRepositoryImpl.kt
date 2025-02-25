@@ -4,12 +4,12 @@ import io.github.josebatista.marketplace.data.dto.ItemsSearchResponseDto
 import io.github.josebatista.marketplace.data.mapper.toItemsSearchResponse
 import io.github.josebatista.marketplace.data.network.NetworkClient
 import io.github.josebatista.marketplace.data.network.NetworkClientResponse
+import io.github.josebatista.marketplace.data.network.constructUrl
 import io.github.josebatista.marketplace.data.network.get
 import io.github.josebatista.marketplace.domain.Resource
 import io.github.josebatista.marketplace.domain.UiText
 import io.github.josebatista.marketplace.domain.model.ItemsSearchResponse
 import io.github.josebatista.marketplace.domain.repository.SearchRepository
-import io.github.josebatista.marketplace.search.data.BuildConfig
 import javax.inject.Inject
 
 internal class SearchRepositoryImpl @Inject constructor(
@@ -19,7 +19,7 @@ internal class SearchRepositoryImpl @Inject constructor(
         runCatching {
             val response: NetworkClientResponse<ItemsSearchResponseDto> =
                 networkClient.get(
-                    url = BuildConfig.BASE_URL + "/sites/MLB/search",
+                    url = constructUrl("/sites/MLB/search"),
                     parameters = mapOf("q" to query, "offset" to offset.toString()),
                 )
             return when (response) {

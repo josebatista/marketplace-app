@@ -18,14 +18,16 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
-import io.github.josebatista.marketplace.domain.model.Result
 import io.github.josebatista.marketplace.search.presentation.components.ProductItem
+import io.github.josebatista.marketplace.search.presentation.model.ProductUiItem
+import io.github.josebatista.marketplace.search.presentation.model.toProductUiItem
+import java.util.UUID
 
 @Composable
-public fun ListScreen(
+internal fun ListScreen(
     modifier: Modifier = Modifier,
     query: String,
-    onItemClick: (Result) -> Unit,
+    onItemClick: (ProductUiItem) -> Unit
 ) {
     val viewModel: ListScreenViewModel = hiltViewModel()
 
@@ -55,14 +57,18 @@ public fun ListScreen(
                 )
             }
         }
-        items(count = lazyPagingItems.itemCount) { index ->
+        items(
+            count = lazyPagingItems.itemCount,
+            key = { index -> lazyPagingItems[index]?.id ?: UUID.randomUUID() }
+        ) { index ->
             val item = lazyPagingItems[index]
             item?.let { product ->
+                val productUiItem = product.toProductUiItem()
                 ProductItem(
                     modifier = Modifier.clickable {
-                        onItemClick(product)
+                        onItemClick(productUiItem)
                     },
-                    product = product
+                    product = productUiItem
                 )
             }
         }
