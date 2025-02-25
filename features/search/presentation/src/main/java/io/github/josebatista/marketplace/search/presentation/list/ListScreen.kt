@@ -34,7 +34,6 @@ private const val DEBOUNCE_TIME = 500L
 @Composable
 internal fun ListScreen(
     modifier: Modifier = Modifier,
-    query: String,
     onItemClick: (ProductUiItem) -> Unit
 ) {
     val viewModel: ListScreenViewModel = hiltViewModel()
@@ -47,10 +46,6 @@ internal fun ListScreen(
     }
 
     val lazyPagingItems = viewModel.searchResults.collectAsLazyPagingItems()
-
-    LaunchedEffect(query) {
-        viewModel.onEvent(ListScreenEvent.OnQueryChange(query))
-    }
 
     LaunchedEffect(lazyListState) {
         snapshotFlow {

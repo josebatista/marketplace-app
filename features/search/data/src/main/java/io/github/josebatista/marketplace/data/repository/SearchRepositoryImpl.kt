@@ -10,28 +10,39 @@ import io.github.josebatista.marketplace.domain.Resource
 import io.github.josebatista.marketplace.domain.UiText
 import io.github.josebatista.marketplace.domain.model.ItemsSearchResponse
 import io.github.josebatista.marketplace.domain.repository.SearchRepository
+import io.github.josebatista.marketplace.logging.Logger
 import javax.inject.Inject
 
 internal class SearchRepositoryImpl @Inject constructor(
-    private val networkClient: NetworkClient
+    private val networkClient: NetworkClient,
+    private val logger: Logger
 ) : SearchRepository {
     override suspend fun invoke(query: String, offset: Int): Resource<ItemsSearchResponse, UiText> =
         runCatching {
+            val url = constructUrl("/sites/MLB/search")
+            logger.sendLog("Iniciando consulta para: $url")
             val response: NetworkClientResponse<ItemsSearchResponseDto> =
                 networkClient.get(
-                    url = constructUrl("/sites/MLB/search"),
+                    url = url,
                     parameters = mapOf("q" to query, "offset" to offset.toString()),
                 )
-            return when (response) {
-                is NetworkClientResponse.NetworkClientError -> Resource.Error(
-                    response.message
-                )
+            when (response) {
+                is NetworkClientResponse.NetworkClientError -> {
+                    logger.sendLog("Erro ao buscar produtos: ${response.message}")
+                    Resource.Error(
+                        response.message
+                    )
+                }
 
-                is NetworkClientResponse.NetworkClientResponseSuccess -> Resource.Success(
-                    data = response.data.toItemsSearchResponse()
-                )
+                is NetworkClientResponse.NetworkClientResponseSuccess -> {
+                    logger.sendLog("Produtos buscados com sucesso")
+                    Resource.Success(
+                        data = response.data.toItemsSearchResponse()
+                    )
+                }
             }
         }.getOrElse {
+            logger.sendLog("Erro ao buscar produtos: ${it.message}")
             Resource.Error(UiText.DynamicText(it.message.toString()))
         }
 }

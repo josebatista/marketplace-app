@@ -23,7 +23,6 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.toRoute
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.josebatista.marketplace.presentation.route.Route
 import io.github.josebatista.marketplace.presentation.theme.MarketplaceAppTheme
@@ -76,16 +75,11 @@ public class MainActivity : ComponentActivity() {
                         ) {
                             composable<Route.SearchRoute> {
                                 SearchScreen { query ->
-                                    navController.navigate(
-                                        Route.ListScreen(
-                                            query = query
-                                        )
-                                    )
+                                    navController.navigate(Route.ListScreen(query = query))
                                 }
                             }
-                            composable<Route.ListScreen> { backStackEntry ->
-                                val route = backStackEntry.toRoute<Route.ListScreen>()
-                                AdaptiveListDetailPanel(query = route.query)
+                            composable<Route.ListScreen> {
+                                AdaptiveListDetailPanel()
                             }
                         }
                     }

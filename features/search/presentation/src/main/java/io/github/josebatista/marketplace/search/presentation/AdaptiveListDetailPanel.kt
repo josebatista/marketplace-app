@@ -15,7 +15,6 @@ import io.github.josebatista.marketplace.search.presentation.model.ProductUiItem
 @OptIn(ExperimentalMaterial3AdaptiveApi::class)
 @Composable
 public fun AdaptiveListDetailPanel(
-    query: String,
     modifier: Modifier = Modifier
 ) {
     val navigator = rememberListDetailPaneScaffoldNavigator<Any>()
@@ -25,7 +24,6 @@ public fun AdaptiveListDetailPanel(
         listPane = {
             AnimatedPane {
                 ListScreen(
-                    query = query,
                     onItemClick = {
                         navigator.navigateTo(
                             pane = ListDetailPaneScaffoldRole.Detail,

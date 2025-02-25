@@ -16,6 +16,7 @@ android {
 
 dependencies {
     implementation(projects.core.domain)
+    implementation(projects.core.logging)
 
     implementation(libs.ktor.client.core)
     implementation(libs.ktor.client.okhttp)

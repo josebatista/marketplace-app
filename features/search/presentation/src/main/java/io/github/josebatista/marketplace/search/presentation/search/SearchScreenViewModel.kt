@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.github.josebatista.marketplace.domain.UiText
+import io.github.josebatista.marketplace.logging.Logger
 import io.github.josebatista.marketplace.search.presentation.R
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -14,7 +15,9 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-internal class SearchScreenViewModel @Inject constructor() : ViewModel() {
+internal class SearchScreenViewModel @Inject constructor(
+    private val logger: Logger
+) : ViewModel() {
 
     private val _state = MutableStateFlow(SearchScreenState())
     val state = _state.asStateFlow()
@@ -32,6 +35,7 @@ internal class SearchScreenViewModel @Inject constructor() : ViewModel() {
     private fun search(query: String) {
         viewModelScope.launch {
             if (query.length < MIN_QUERY_LENGTH) {
+                logger.sendLog("Search query [$query] is too short")
                 _uiEvent.send(
                     SearchUiEvent.ShowError(
                         UiText.StringResource(
@@ -41,6 +45,7 @@ internal class SearchScreenViewModel @Inject constructor() : ViewModel() {
                     )
                 )
             } else {
+                logger.sendLog("Search query [$query] is valid")
                 _uiEvent.send(SearchUiEvent.Search(query))
             }
         }

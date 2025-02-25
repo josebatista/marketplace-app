@@ -12,8 +12,9 @@ dependencies {
 
     implementation(libs.androidx.adaptive.navigation)
 
-    implementation(projects.core.presentation)
     implementation(projects.core.domain)
+    implementation(projects.core.logging)
+    implementation(projects.core.presentation)
 
     implementation(projects.features.search.data)
     implementation(projects.features.search.domain)
