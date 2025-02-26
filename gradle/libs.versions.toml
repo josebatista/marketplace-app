@@ -13,12 +13,13 @@ espressoCore = "3.6.1"
 googleTruth = "1.4.4"
 hilt = "2.55"
 hiltExt = "1.2.0"
+jacoco = "0.8.12"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 kotlin = "2.1.10"
 kotlinCoroutine = "1.10.1"
-ktor = "3.1.0"
 kotlinSerializationJson = "1.8.0"
+ktor = "3.1.0"
 ksp = "2.1.10-1.0.30"
 lifecycleRuntimeKtx = "2.8.7"
 androidxNavigation = "2.8.7"
@@ -89,8 +90,11 @@ ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 # Plugins defined by this project
 marketplace-android-application = { id = "marketplace.android.application" }
 marketplace-android-application-compose = { id = "marketplace.android.application.compose" }
+marketplace-android-jacoco = { id = "marketplace.android.jacoco" }
 marketplace-android-library = { id = "marketplace.android.library" }
 marketplace-android-library-compose = { id = "marketplace.android.library.compose" }
 marketplace-detekt = { id = "marketplace.detekt" }
 marketplace-hilt = { id = "marketplace.hilt" }
 marketplace-jvm-library = { id = "marketplace.jvm.library" }
+marketplace-jvm-library-jacoco = { id = "marketplace.jvm.library.jacoco" }
+marketplace-project-library-jacoco = { id = "marketplace.project.library.jacoco" }

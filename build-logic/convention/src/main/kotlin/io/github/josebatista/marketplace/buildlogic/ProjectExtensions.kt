@@ -7,3 +7,7 @@ import org.gradle.kotlin.dsl.getByType
 
 val Project.libs
     get(): VersionCatalog = extensions.getByType<VersionCatalogsExtension>().named("libs")
+
+internal fun Project.isJvm(): Boolean {
+    return plugins.findPlugin("marketplace.jvm.library") != null
+}
