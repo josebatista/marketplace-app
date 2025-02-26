@@ -55,12 +55,24 @@ gradlePlugin {
             implementationClass = "HiltConventionPlugin"
         }
         register("jvmLibrary") {
-            id = libs.plugins.marketplace.jvm.library.get().pluginId
+            id = libs.plugins.marketplace.jvm.library.asProvider().get().pluginId
             implementationClass = "JvmLibraryConventionPlugin"
         }
         register("detekt") {
             id = libs.plugins.marketplace.detekt.get().pluginId
             implementationClass = "DetektConventionPlugin"
+        }
+        register("jacocoProjectConventionPlugin") {
+            id = libs.plugins.marketplace.project.library.jacoco.get().pluginId
+            implementationClass = "JacocoProjectConventionPlugin"
+        }
+        register("jacocoAndroidConventionPlugin") {
+            id = libs.plugins.marketplace.android.jacoco.get().pluginId
+            implementationClass = "JacocoAndroidConventionPlugin"
+        }
+        register("jacocoJvmConventionPlugin") {
+            id = libs.plugins.marketplace.jvm.library.jacoco.get().pluginId
+            implementationClass = "JacocoJvmConventionPlugin"
         }
     }
 }

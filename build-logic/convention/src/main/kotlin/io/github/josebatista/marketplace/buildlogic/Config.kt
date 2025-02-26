@@ -9,4 +9,5 @@ internal object Config {
     const val MIN_SDK = 26
     val JAVA_VERSION = JavaVersion.VERSION_11
     val JVM_TARGET = JvmTarget.JVM_11
+    const val CURRENT_COVERAGE = 0.15
 }
