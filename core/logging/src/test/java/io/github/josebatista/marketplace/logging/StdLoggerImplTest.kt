@@ -24,7 +24,7 @@ internal class StdLoggerImplTest {
     }
 
     @Test
-    fun `sendLog deve imprimir a mensagem formatada corretamente`() {
+    fun `sendLog should print the formatted message correctly`() {
         val logger: Logger = StdLoggerImpl()
         val mensagemTeste = "Hello, Logger!"
 

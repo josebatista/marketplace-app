@@ -33,7 +33,7 @@ internal class SearchPagingSourceTest {
     }
 
     @Test
-    fun `load retorna LoadResult Error quando searchUseCase retorna Resource Error`() = runTest {
+    fun `load returns LoadResult Error when searchUseCase returns Resource Error`() = runTest {
         coEvery {
             searchUseCase(
                 query = query,
@@ -50,7 +50,7 @@ internal class SearchPagingSourceTest {
     }
 
     @Test
-    fun `load retorna LoadResult Page quando Resource Success com resultados válidos e nextKey não nulo`() =
+    fun `load returns LoadResult Page when Resource Success with valid results and non-null nextKey`() =
         runTest {
             val dummyResult = mockk<Result>()
             val dummyResponse = mockk<ItemsSearchResponse>()
@@ -71,7 +71,7 @@ internal class SearchPagingSourceTest {
         }
 
     @Test
-    fun `load retorna LoadResult Page com nextKey nulo quando offset + loadSize ultrapassa total`() =
+    fun `load returns LoadResult Page with null nextKey when offset + loadSize exceeds total`() =
         runTest {
             val dummyResult = mockk<Result>()
             val dummyResponse = mockk<ItemsSearchResponse>()
@@ -92,7 +92,7 @@ internal class SearchPagingSourceTest {
         }
 
     @Test
-    fun `load retorna LoadResult Error quando results é nulo`() = runTest {
+    fun `load returns LoadResult Error when results are null`() = runTest {
         val dummyResponse = mockk<ItemsSearchResponse>()
         every { dummyResponse.results } returns null
         every { dummyResponse.paging } returns Paging(total = 100)
@@ -107,7 +107,7 @@ internal class SearchPagingSourceTest {
     }
 
     @Test
-    fun `load retorna LoadResult Error quando exceção é lançada durante o load`() = runTest {
+    fun `load returns LoadResult Error when an exception is thrown during load`() = runTest {
         coEvery {
             searchUseCase(
                 query = query,
@@ -125,7 +125,7 @@ internal class SearchPagingSourceTest {
     }
 
     @Test
-    fun `getRefreshKey retorna null quando anchorPosition é nulo`() {
+    fun `getRefreshKey returns null when anchorPosition is null`() {
         val pagingState = PagingState<Int, Result>(
             pages = listOf(),
             anchorPosition = null,
@@ -139,7 +139,7 @@ internal class SearchPagingSourceTest {
     }
 
     @Test
-    fun `getRefreshKey retorna prevKey + 1 quando closestPageToPosition tem prevKey não nulo`() {
+    fun `getRefreshKey returns prevKey + 1 when closestPageToPosition has non-null prevKey`() {
         val dummyResult = mockk<Result>()
         val page = PagingSource.LoadResult.Page(
             data = listOf(dummyResult),
@@ -156,7 +156,7 @@ internal class SearchPagingSourceTest {
     }
 
     @Test
-    fun `getRefreshKey retorna nextKey - 1 quando closestPageToPosition tem prevKey nulo mas nextKey não nulo`() {
+    fun `getRefreshKey returns nextKey - 1 when closestPageToPosition has null prevKey but non-null nextKey`() {
         val dummyResult = mockk<Result>()
         val page = PagingSource.LoadResult.Page(
             data = listOf(dummyResult),
@@ -173,7 +173,7 @@ internal class SearchPagingSourceTest {
     }
 
     @Test
-    fun `getRefreshKey retorna null quando closestPageToPosition retorna null`() {
+    fun `getRefreshKey returns null when closestPageToPosition returns null`() {
         val pagingState = mockk<PagingState<Int, Result>>()
         every { pagingState.anchorPosition } returns 10
         every { pagingState.closestPageToPosition(10) } returns null

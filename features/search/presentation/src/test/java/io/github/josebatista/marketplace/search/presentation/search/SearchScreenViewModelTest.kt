@@ -39,7 +39,7 @@ internal class SearchScreenViewModelTest {
     }
 
     @Test
-    fun `onQueryChange deve atualizar o estado com a nova query`() = runTest {
+    fun `onQueryChange should update state with new query`() = runTest {
         val novaQuery = "consulta teste"
         viewModel.onEvent(SearchScreenEvent.OnQueryChange(novaQuery))
 
@@ -48,7 +48,7 @@ internal class SearchScreenViewModelTest {
     }
 
     @Test
-    fun `onSearch com query menor que o minimo deve enviar evento de erro e log apropriado`() =
+    fun `onSearch with query shorter than minimum should send error event and appropriate log`() =
         runTest {
             val queryCurta = "ab"
             viewModel.onEvent(SearchScreenEvent.OnSearch(queryCurta))
@@ -66,7 +66,7 @@ internal class SearchScreenViewModelTest {
         }
 
     @Test
-    fun `onSearch com query valida deve enviar evento de busca e log apropriado`() = runTest {
+    fun `onSearch with valid query should send search event and appropriate log`() = runTest {
         val queryValida = "abc"
         viewModel.onEvent(SearchScreenEvent.OnSearch(queryValida))
         advanceUntilIdle()
