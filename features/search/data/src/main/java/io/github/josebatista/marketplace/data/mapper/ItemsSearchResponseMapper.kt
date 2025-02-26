@@ -4,16 +4,16 @@ import io.github.josebatista.marketplace.data.dto.ItemsSearchResponseDto
 import io.github.josebatista.marketplace.domain.model.ItemsSearchResponse
 
 internal fun ItemsSearchResponseDto.toItemsSearchResponse() = ItemsSearchResponse(
-    siteId,
-    countryDefaultTimeZone,
-    query,
-    paging?.toPaging(),
-    results?.map { it.toResult() },
-    sort?.toSort(),
-    availableSorts?.map { it.toSortOption() },
-    filters?.map { it.toFilter() },
-    availableFilters?.map { it.toAvailableFilter() },
-    pdpTracking?.toPdpTracking(),
-    userContext,
-    rankingIntrospection,
+    siteId = siteId,
+    countryDefaultTimeZone = countryDefaultTimeZone,
+    query = query,
+    paging = paging?.toPaging(),
+    results = results?.map { it.toResult() },
+    sort = sort?.toSort(),
+    availableSorts = availableSorts?.map { it.toSortOption() },
+    filters = filters?.map { it.toFilter() },
+    availableFilters = availableFilters?.map { it.toAvailableFilter() },
+    pdpTracking = pdpTracking?.toPdpTracking(),
+    userContext = userContext,
+    rankingIntrospection = rankingIntrospection,
 )

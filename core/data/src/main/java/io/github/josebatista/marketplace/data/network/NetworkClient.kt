@@ -11,7 +11,8 @@ public interface NetworkClient {
     ): NetworkClientResponse<T>
 
     public suspend fun <T : Any> post(
-        url: String, body: Any? = null,
+        url: String,
+        body: Any? = null,
         headers: Map<String, String>? = null,
         clazz: KClass<T>,
     ): NetworkClientResponse<T>
