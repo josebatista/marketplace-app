@@ -18,6 +18,8 @@ dependencies {
     implementation(projects.core.domain)
     implementation(projects.core.logging)
 
+    testImplementation("com.squareup.okhttp3:mockwebserver:4.12.0")
+
     implementation(libs.ktor.client.core)
     implementation(libs.ktor.client.okhttp)
     implementation(libs.ktor.client.content.negotiation)
