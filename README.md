@@ -101,6 +101,26 @@ The project uses convention plugins (located in the build-logic directory) to st
 configurations across modules. These plugins configure tasks like Jacoco and Dokka, ensuring
 consistent settings and simplifying maintenance.
 
+## Roadmap & Planned Features
+
+The following list outlines the implemented and planned features for the Marketplace App.
+- [x] **Multi-module architecture (feature → layers)**
+- [x] **Convention plugins for standardized build configurations**
+- [x] **Gradle improvements (build optimizations and caching)**
+- [x] **Explicit API mode**
+- [x] **Jetpack Compose for UI development**
+- [x] **Coil for image loading and caching**
+- [ ] **Room (local database integration)**
+- [ ] **Offline-first support**
+- [x] **Retrofit/Ktor for network operations**
+- [x] **Unit tests**
+- [ ] **UI tests**
+- [x] **DeteKt for static code analysis**
+- [x] **Documentation generation with Dokka**
+- [x] **Test coverage reporting using JaCoCo**
+- [x] **Obfuscation (R8 Full)**
+- [x] **GitHub Actions for CI/CD**
+
 ## Getting Started
 
 ### Prerequisites
@@ -150,7 +170,7 @@ consistent settings and simplifying maintenance.
 This project uses GitHub Actions for CI. The workflow performs the following tasks:
 
 - **Sets up JDK 11** and caches Gradle dependencies for faster builds.
-- Runs Gradle tasks: `clean`, `build`, `jacocoTestReport`, and `dokkaHtmlMultiModule`.
+- Runs Gradle tasks: `jacocoProjectCoverageVerification`, `jacocoProjectCoverageReport`, and `dokkaHtmlMultiModule`.
 - Uploads the Jacoco code coverage report and Dokka documentation as artifacts.
 
 ## Contributing
