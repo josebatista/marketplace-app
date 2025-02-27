@@ -1,4 +1,4 @@
-name: Pull Request to Main
+name: Merge to Main Branch
 
 on:
   workflow_dispatch:
