@@ -24,12 +24,30 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
-import io.github.josebatista.marketplace.presentation.route.Route
-import io.github.josebatista.marketplace.presentation.theme.MarketplaceAppTheme
+import io.github.josebatista.marketplace.presentation.core.route.Route
+import io.github.josebatista.marketplace.presentation.core.theme.MarketplaceAppTheme
 import io.github.josebatista.marketplace.search.presentation.AdaptiveListDetailPanel
 import io.github.josebatista.marketplace.search.presentation.search.SearchScreen
 import io.github.josebatista.marketplace.util.AndroidConnectivityObserver
 
+/**
+ * Main entry point of the Marketplace application.
+ *
+ * This [ComponentActivity] is annotated with [AndroidEntryPoint] to enable dependency injection via Hilt.
+ * It sets up edge-to-edge display and applies the [MarketplaceAppTheme] to the app's content.
+ *
+ * The activity instantiates a [MainActivityViewModel] to monitor network connectivity via an
+ * [AndroidConnectivityObserver]. The connectivity status is observed as a state, and if the device
+ * is not connected to the internet, an error banner is displayed at the top of the screen.
+ *
+ * Navigation within the app is managed by a [NavHost] using Jetpack Compose Navigation. The app
+ * defines two routes:
+ * - [Route.SearchRoute]: Displays the [SearchScreen] where users can enter a search query.
+ * - [Route.ListScreen]: Displays the [AdaptiveListDetailPanel] with the search results and product details.
+ *
+ * When a search is performed from the [SearchScreen], the query is passed to the navigation controller,
+ * which then navigates to the list screen displaying the relevant search results.
+ */
 @AndroidEntryPoint
 public class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

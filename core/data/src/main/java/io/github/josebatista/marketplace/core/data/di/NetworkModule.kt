@@ -1,11 +1,11 @@
-package io.github.josebatista.marketplace.data.di
+package io.github.josebatista.marketplace.core.data.di
 
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import io.github.josebatista.marketplace.data.network.KtorNetworkClient
-import io.github.josebatista.marketplace.data.network.NetworkClient
+import io.github.josebatista.marketplace.core.data.network.KtorNetworkClient
+import io.github.josebatista.marketplace.core.data.network.NetworkClient
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.okhttp.OkHttp
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
@@ -16,7 +16,7 @@ import io.ktor.client.plugins.logging.Logging
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 import javax.inject.Singleton
-import io.github.josebatista.marketplace.logging.Logger as MarketplaceLogger
+import io.github.josebatista.marketplace.core.logging.Logger as MarketplaceLogger
 
 @Module
 @InstallIn(SingletonComponent::class)

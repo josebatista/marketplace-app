@@ -1,0 +1,8 @@
+# Module Core Domain
+
+This content appears under your module name.
+
+# Package io.github.josebatista.marketplace.core.domain
+
+This content appears under your package name in the packages list.
+It also appears under the first-level heading on your package's page.

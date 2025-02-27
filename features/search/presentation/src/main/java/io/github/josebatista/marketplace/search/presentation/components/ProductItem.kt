@@ -22,6 +22,20 @@ import coil3.compose.rememberAsyncImagePainter
 import coil3.request.ImageRequest
 import io.github.josebatista.marketplace.search.presentation.model.ProductUiItem
 
+/**
+ * Displays a product item in a horizontal layout.
+ *
+ * This composable renders a product item with an image on the left and product details on the right.
+ * The image is loaded asynchronously using Coil's [rememberAsyncImagePainter] with the product's thumbnail URL.
+ *
+ * The layout is structured as a [Row] where:
+ * - A [Box] occupies one-third of the width (using a weight of 1f) and displays the product image.
+ * - A [Column] occupies two-thirds of the width (using a weight of 2f) and displays the product's brand (if available)
+ *   in bold and the product title below it.
+ *
+ * @param product The [ProductUiItem] containing the details to be displayed.
+ * @param modifier An optional [Modifier] for applying layout or styling adjustments.
+ */
 @Composable
 internal fun ProductItem(
     product: ProductUiItem,

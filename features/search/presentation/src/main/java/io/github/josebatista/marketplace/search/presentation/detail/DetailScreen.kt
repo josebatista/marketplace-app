@@ -18,6 +18,24 @@ import io.github.josebatista.marketplace.search.presentation.R
 import io.github.josebatista.marketplace.search.presentation.components.ProductItem
 import io.github.josebatista.marketplace.search.presentation.model.ProductUiItem
 
+/**
+ * Displays the detail screen for the selected product.
+ *
+ * If a [selectedItem] is provided, this composable displays the product details in a vertically scrollable column.
+ * The UI includes:
+ * - The product rendered via [ProductItem].
+ * - A horizontal divider.
+ * - The original price with a strikethrough, formatted using the string resource
+ *   [R.string.features_search_presentation_original_price].
+ * - The current price, formatted using the string resource [R.string.features_search_presentation_price].
+ * - Another horizontal divider.
+ * - A list of product attributes displayed as key-value pairs.
+ *
+ * If [selectedItem] is null, nothing is rendered.
+ *
+ * @param selectedItem The [ProductUiItem] to display. If null, the detail screen will remain empty.
+ * @param modifier An optional [Modifier] for applying layout or styling adjustments.
+ */
 @Composable
 internal fun DetailScreen(
     selectedItem: ProductUiItem?,

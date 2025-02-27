@@ -1,7 +1,7 @@
 package io.github.josebatista.marketplace.domain.usecase
 
 import com.google.common.truth.Truth.assertThat
-import io.github.josebatista.marketplace.domain.Resource
+import io.github.josebatista.marketplace.core.domain.Resource
 import io.github.josebatista.marketplace.domain.model.ItemsSearchResponse
 import io.github.josebatista.marketplace.domain.repository.SearchRepository
 import io.mockk.MockKAnnotations

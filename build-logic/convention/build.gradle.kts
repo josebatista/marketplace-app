@@ -19,10 +19,11 @@ kotlin {
 
 dependencies {
     compileOnly(libs.android.gradlePlugin)
-    compileOnly(libs.kotlin.gradlePlugin)
     compileOnly(libs.android.tools.common)
     compileOnly(libs.compose.gradlePlugin)
     compileOnly(libs.detekt.gradlePlugin)
+    compileOnly(libs.dokka.gradlePlugin)
+    compileOnly(libs.kotlin.gradlePlugin)
 }
 
 tasks {
@@ -62,17 +63,21 @@ gradlePlugin {
             id = libs.plugins.marketplace.detekt.get().pluginId
             implementationClass = "DetektConventionPlugin"
         }
-        register("jacocoProjectConventionPlugin") {
+        register("jacocoProject") {
             id = libs.plugins.marketplace.project.library.jacoco.get().pluginId
             implementationClass = "JacocoProjectConventionPlugin"
         }
-        register("jacocoAndroidConventionPlugin") {
+        register("jacocoAndroid") {
             id = libs.plugins.marketplace.android.jacoco.get().pluginId
             implementationClass = "JacocoAndroidConventionPlugin"
         }
-        register("jacocoJvmConventionPlugin") {
+        register("jacocoJvm") {
             id = libs.plugins.marketplace.jvm.library.jacoco.get().pluginId
             implementationClass = "JacocoJvmConventionPlugin"
+        }
+        register("dokka") {
+            id = libs.plugins.marketplace.dokka.get().pluginId
+            implementationClass = "DokkaConventionPlugin"
         }
     }
 }

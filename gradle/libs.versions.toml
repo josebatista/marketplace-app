@@ -9,6 +9,7 @@ coilNetworkOkhttp = "3.1.0"
 composeBom = "2025.02.00"
 coreKtx = "1.15.0"
 detekt = "1.23.7"
+dokka = "2.0.0"
 espressoCore = "3.6.1"
 googleTruth = "1.4.4"
 hilt = "2.55"
@@ -49,7 +50,6 @@ androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-man
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coilCompose" }
 coil-network-okhttp = { module = "io.coil-kt.coil3:coil-network-okhttp", version.ref = "coilNetworkOkhttp" }
-detekt-gradlePlugin = { group = "io.gitlab.arturbosch.detekt", name = "detekt-gradle-plugin", version.ref = "detekt" }
 google-truth = { group = "com.google.truth", name = "truth", version.ref = "googleTruth" }
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 hilt-android-testing = { group = "com.google.dagger", name = "hilt-android-testing", version.ref = "hilt" }
@@ -73,13 +73,16 @@ mockk-android-agent = { group = "io.mockk", name = "mockk-agent", version.ref = 
 # Dependencies of the included build-logic
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
 android-tools-common = { group = "com.android.tools", name = "common", version.ref = "androidTools" }
-kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 compose-gradlePlugin = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "kotlin" }
+detekt-gradlePlugin = { group = "io.gitlab.arturbosch.detekt", name = "detekt-gradle-plugin", version.ref = "detekt" }
+dokka-gradlePlugin = { group = "org.jetbrains.dokka", name = "dokka-gradle-plugin", version.ref = "dokka" }
+kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
+dokka = {id = "org.jetbrains.dokka", version.ref = "dokka"}
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
@@ -94,6 +97,7 @@ marketplace-android-jacoco = { id = "marketplace.android.jacoco" }
 marketplace-android-library = { id = "marketplace.android.library" }
 marketplace-android-library-compose = { id = "marketplace.android.library.compose" }
 marketplace-detekt = { id = "marketplace.detekt" }
+marketplace-dokka = { id = "marketplace.dokka" }
 marketplace-hilt = { id = "marketplace.hilt" }
 marketplace-jvm-library = { id = "marketplace.jvm.library" }
 marketplace-jvm-library-jacoco = { id = "marketplace.jvm.library.jacoco" }
