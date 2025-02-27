@@ -16,6 +16,7 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
             apply(plugin = libs.findPlugin("kotlin.android").get().get().pluginId)
             apply(plugin = libs.findPlugin("marketplace.android.jacoco").get().get().pluginId)
             apply(plugin = libs.findPlugin("marketplace.detekt").get().get().pluginId)
+            apply(plugin = libs.findPlugin("marketplace.dokka").get().get().pluginId)
             apply(plugin = libs.findPlugin("marketplace.hilt").get().get().pluginId)
             extensions.configure<ApplicationExtension> {
                 configureKotlinAndroid(this)

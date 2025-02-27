@@ -12,6 +12,7 @@ class JvmLibraryConventionPlugin : Plugin<Project> {
             apply(plugin = libs.findPlugin("kotlin.jvm").get().get().pluginId)
             apply(plugin = libs.findPlugin("marketplace.jvm.library.jacoco").get().get().pluginId)
             apply(plugin = libs.findPlugin("marketplace.detekt").get().get().pluginId)
+            apply(plugin = libs.findPlugin("marketplace.dokka").get().get().pluginId)
             apply(plugin = libs.findPlugin("marketplace.hilt").get().get().pluginId)
             configureKotlinJvm()
             dependencies {
