@@ -136,7 +136,7 @@ The following list outlines the implemented and planned features for the Marketp
 1. **Clone the Repository:**
 
    ```bash
-   git clone https://github.com/yourusername/marketplace-app.git
+   git clone https://github.com/josebatista/marketplace-app.git
    cd marketplace-app
    ```
 
