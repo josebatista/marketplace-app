@@ -1,6 +1,8 @@
 package io.github.josebatista.marketplace.logging
 
 import com.google.common.truth.Truth.assertThat
+import io.github.josebatista.marketplace.core.logging.Logger
+import io.github.josebatista.marketplace.core.logging.StdLoggerImpl
 import org.junit.After
 import org.junit.Before
 import org.junit.Test

@@ -3,7 +3,7 @@ package io.github.josebatista.marketplace.search.presentation.list
 import androidx.lifecycle.SavedStateHandle
 import com.google.common.truth.Truth.assertThat
 import io.github.josebatista.marketplace.domain.usecase.SearchUseCase
-import io.github.josebatista.marketplace.logging.Logger
+import io.github.josebatista.marketplace.core.logging.Logger
 import io.mockk.clearAllMocks
 import io.mockk.mockk
 import io.mockk.verify

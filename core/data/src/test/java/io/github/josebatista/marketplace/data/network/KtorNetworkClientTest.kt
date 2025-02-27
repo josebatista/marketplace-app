@@ -1,8 +1,10 @@
 package io.github.josebatista.marketplace.data.network
 
 import com.google.common.truth.Truth.assertThat
-import io.github.josebatista.marketplace.domain.UiText
-import io.github.josebatista.marketplace.logging.Logger
+import io.github.josebatista.marketplace.core.data.network.KtorNetworkClient
+import io.github.josebatista.marketplace.core.data.network.NetworkClientResponse
+import io.github.josebatista.marketplace.core.domain.UiText
+import io.github.josebatista.marketplace.core.logging.Logger
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.okhttp.OkHttp
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation

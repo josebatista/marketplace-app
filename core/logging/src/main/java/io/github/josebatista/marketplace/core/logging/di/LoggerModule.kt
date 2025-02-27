@@ -1,11 +1,11 @@
-package io.github.josebatista.marketplace.logging.di
+package io.github.josebatista.marketplace.core.logging.di
 
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import io.github.josebatista.marketplace.logging.Logger
-import io.github.josebatista.marketplace.logging.StdLoggerImpl
+import io.github.josebatista.marketplace.core.logging.Logger
+import io.github.josebatista.marketplace.core.logging.StdLoggerImpl
 import javax.inject.Singleton
 
 @Module

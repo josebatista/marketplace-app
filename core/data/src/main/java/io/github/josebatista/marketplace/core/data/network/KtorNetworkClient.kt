@@ -1,8 +1,8 @@
-package io.github.josebatista.marketplace.data.network
+package io.github.josebatista.marketplace.core.data.network
 
-import io.github.josebatista.marketplace.data.R
-import io.github.josebatista.marketplace.domain.UiText
-import io.github.josebatista.marketplace.logging.Logger
+import io.github.josebatista.marketplace.core.data.R
+import io.github.josebatista.marketplace.core.domain.UiText
+import io.github.josebatista.marketplace.core.logging.Logger
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.plugins.ResponseException
@@ -20,12 +20,36 @@ import javax.inject.Inject
 import javax.inject.Singleton
 import kotlin.reflect.KClass
 
+/**
+ * A [NetworkClient] implementation that uses Ktor's [HttpClient] to perform network operations.
+ *
+ * This class performs HTTP requests (GET, POST, PUT, DELETE) using the Ktor client, logs request details using
+ * the provided [Logger], and wraps responses in a [NetworkClientResponse]. It uses a common [safeCall] mechanism to
+ * handle exceptions and transform them into [NetworkClientResponse.NetworkClientError] instances.
+ *
+ * @property client The [HttpClient] instance used for making network requests.
+ * @property logger The [Logger] used to log request details and errors.
+ */
 @Singleton
 internal class KtorNetworkClient @Inject constructor(
     private val client: HttpClient,
     private val logger: Logger
 ) : NetworkClient {
 
+    /**
+     * Executes an HTTP GET request.
+     *
+     * The GET request is made to the specified [url] with optional [parameters] and [headers].
+     * For each parameter and header, a log message is generated.
+     * The response body is parsed into an instance of type [T] using the provided [clazz] information.
+     *
+     * @param T The expected type of the response data.
+     * @param url The URL endpoint for the GET request.
+     * @param parameters Optional query parameters.
+     * @param headers Optional request headers.
+     * @param clazz The [KClass] of the expected response data.
+     * @return A [NetworkClientResponse] containing the parsed data on success, or an error on failure.
+     */
     override suspend fun <T : Any> get(
         url: String,
         parameters: Map<String, String>?,
@@ -49,6 +73,20 @@ internal class KtorNetworkClient @Inject constructor(
         )
     }
 
+    /**
+     * Executes an HTTP POST request.
+     *
+     * The POST request is made to the specified [url] with an optional [body] and optional [headers].
+     * If a [body] is provided, it is set in the request and logged. The response body is parsed into an
+     * instance of type [T] using the provided [clazz] information.
+     *
+     * @param T The expected type of the response data.
+     * @param url The URL endpoint for the POST request.
+     * @param body The request body to be sent; can be null.
+     * @param headers Optional request headers.
+     * @param clazz The [KClass] of the expected response data.
+     * @return A [NetworkClientResponse] containing the parsed data on success, or an error on failure.
+     */
     override suspend fun <T : Any> post(
         url: String,
         body: Any?,
@@ -72,6 +110,20 @@ internal class KtorNetworkClient @Inject constructor(
         )
     }
 
+    /**
+     * Executes an HTTP PUT request.
+     *
+     * The PUT request is made to the specified [url] with an optional [body] and optional [headers].
+     * If a [body] is provided, it is set in the request and logged. The response body is parsed into an
+     * instance of type [T] using the provided [clazz] information.
+     *
+     * @param T The expected type of the response data.
+     * @param url The URL endpoint for the PUT request.
+     * @param body The request body to be sent; can be null.
+     * @param headers Optional request headers.
+     * @param clazz The [KClass] of the expected response data.
+     * @return A [NetworkClientResponse] containing the parsed data on success, or an error on failure.
+     */
     override suspend fun <T : Any> put(
         url: String,
         body: Any?,
@@ -95,6 +147,18 @@ internal class KtorNetworkClient @Inject constructor(
         )
     }
 
+    /**
+     * Executes an HTTP DELETE request.
+     *
+     * The DELETE request is made to the specified [url] with optional [headers].
+     * The response body is parsed into an instance of type [T] using the provided [clazz] information.
+     *
+     * @param T The expected type of the response data.
+     * @param url The URL endpoint for the DELETE request.
+     * @param headers Optional request headers.
+     * @param clazz The [KClass] of the expected response data.
+     * @return A [NetworkClientResponse] containing the parsed data on success, or an error on failure.
+     */
     override suspend fun <T : Any> delete(
         url: String,
         headers: Map<String, String>?,
@@ -113,6 +177,18 @@ internal class KtorNetworkClient @Inject constructor(
         )
     }
 
+    /**
+     * Executes a safe network call by wrapping the provided [block] in a try-catch block.
+     *
+     * This function runs the [block] in the IO dispatcher and catches any exceptions that may occur.
+     * In case of an exception, it logs the error, determines an appropriate HTTP status code, and returns a
+     * [NetworkClientResponse.NetworkClientError] with a dynamic error message.
+     *
+     * @param T The expected type of the response data.
+     * @param block A suspend lambda that executes the network request and returns
+     * a [NetworkClientResponse] of type [T].
+     * @return A [NetworkClientResponse] containing either the successful result or an error.
+     */
     private suspend fun <T> safeCall(
         block: suspend () -> NetworkClientResponse<T>
     ): NetworkClientResponse<T> = withContext(Dispatchers.IO) {

@@ -9,6 +9,22 @@ import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 
+/**
+ * An implementation of [ConnectivityObserver] that monitors network connectivity changes using
+ * Android's [ConnectivityManager].
+ *
+ * This class registers a default network callback and emits connectivity status updates as
+ * a [Flow] of [Boolean] values.
+ * The flow emits `true` when the device is connected to a network with validated capabilities, and
+ * `false` when the network
+ * is lost or unavailable.
+ *
+ * Connectivity changes are observed via a [callbackFlow] that creates
+ * a [ConnectivityManager.NetworkCallback]. When the flow
+ * collection is cancelled, the network callback is automatically unregistered using [awaitClose].
+ *
+ * @param context The [Context] used to retrieve the [ConnectivityManager] system service.
+ */
 internal class AndroidConnectivityObserver(context: Context) : ConnectivityObserver {
 
     private val connectivityManager = context.getSystemService<ConnectivityManager>()!!

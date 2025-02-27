@@ -4,8 +4,8 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.google.common.truth.Truth.assertThat
-import io.github.josebatista.marketplace.domain.Resource
-import io.github.josebatista.marketplace.domain.UiText
+import io.github.josebatista.marketplace.core.domain.Resource
+import io.github.josebatista.marketplace.core.domain.UiText
 import io.github.josebatista.marketplace.domain.model.ItemsSearchResponse
 import io.github.josebatista.marketplace.domain.model.Paging
 import io.github.josebatista.marketplace.domain.model.Result

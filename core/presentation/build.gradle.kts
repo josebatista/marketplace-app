@@ -4,5 +4,5 @@ plugins {
 }
 
 android {
-    namespace = "io.github.josebatista.marketplace.presentation"
+    namespace = "io.github.josebatista.marketplace.core.presentation"
 }

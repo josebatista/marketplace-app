@@ -28,8 +28,25 @@ import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.debounce
 import java.util.UUID
 
+/**
+ * The debounce duration (in milliseconds) applied to the scroll position snapshot flow.
+ */
 private const val DEBOUNCE_TIME = 500L
 
+/**
+ * Displays a list of products in a paginated, lazy-loaded column.
+ *
+ * This composable observes the search results from [ListScreenViewModel] and displays them in a [LazyColumn].
+ * It handles loading and error states by showing a loading indicator or an error message when needed.
+ *
+ * Additionally, the scroll position is tracked using a [LazyListState]. A [snapshotFlow] monitors the scroll
+ * position, debounces changes using [DEBOUNCE_TIME], and dispatches [ListScreenEvent.OnScrollPositionChange]
+ * events to update the ViewModel's state.
+ *
+ * @param modifier An optional [Modifier] to be applied to the [LazyColumn].
+ * @param onItemClick Callback invoked when a product item is clicked. The corresponding [ProductUiItem]
+ *                    is passed as a parameter.
+ */
 @OptIn(FlowPreview::class)
 @Composable
 internal fun ListScreen(
@@ -94,6 +111,14 @@ internal fun ListScreen(
     }
 }
 
+/**
+ * Displays a text message indicating that the items are being refreshed.
+ *
+ * This composable is used as a placeholder at the top of the list when the search results
+ * are being initially loaded.
+ *
+ * @param modifier An optional [Modifier] to be applied to the [Text] component.
+ */
 @Composable
 private fun Refresh(modifier: Modifier = Modifier) {
     Text(
@@ -104,6 +129,15 @@ private fun Refresh(modifier: Modifier = Modifier) {
     )
 }
 
+
+/**
+ * Displays a circular loading indicator.
+ *
+ * This composable is used to indicate that more items are being loaded when paginating
+ * through the search results.
+ *
+ * @param modifier An optional [Modifier] to be applied to the [CircularProgressIndicator].
+ */
 @Composable
 private fun Loading(modifier: Modifier = Modifier) {
     CircularProgressIndicator(

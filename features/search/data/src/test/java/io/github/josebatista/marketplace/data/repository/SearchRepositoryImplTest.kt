@@ -4,12 +4,12 @@ import android.content.Context
 import com.google.common.truth.Truth.assertThat
 import io.github.josebatista.marketplace.data.dto.ItemsSearchResponseDto
 import io.github.josebatista.marketplace.data.mapper.toItemsSearchResponse
-import io.github.josebatista.marketplace.data.network.NetworkClient
-import io.github.josebatista.marketplace.data.network.NetworkClientResponse
-import io.github.josebatista.marketplace.domain.Resource
-import io.github.josebatista.marketplace.domain.UiText
+import io.github.josebatista.marketplace.core.data.network.NetworkClient
+import io.github.josebatista.marketplace.core.data.network.NetworkClientResponse
+import io.github.josebatista.marketplace.core.domain.Resource
+import io.github.josebatista.marketplace.core.domain.UiText
 import io.github.josebatista.marketplace.domain.model.ItemsSearchResponse
-import io.github.josebatista.marketplace.logging.Logger
+import io.github.josebatista.marketplace.core.logging.Logger
 import io.mockk.coEvery
 import io.mockk.every
 import io.mockk.mockk

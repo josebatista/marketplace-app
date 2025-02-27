@@ -1,8 +1,8 @@
 package io.github.josebatista.marketplace.search.presentation.search
 
 import com.google.common.truth.Truth.assertThat
-import io.github.josebatista.marketplace.domain.UiText
-import io.github.josebatista.marketplace.logging.Logger
+import io.github.josebatista.marketplace.core.domain.UiText
+import io.github.josebatista.marketplace.core.logging.Logger
 import io.mockk.clearAllMocks
 import io.mockk.mockk
 import io.mockk.verify
