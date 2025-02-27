@@ -118,8 +118,9 @@ The following list outlines the implemented and planned features for the Marketp
 - [x] **DeteKt for static code analysis**
 - [x] **Documentation generation with Dokka**
 - [x] **Test coverage reporting using JaCoCo**
-- [x] **Obfuscation (R8 Full)**
-- [x] **GitHub Actions for CI/CD**
+- [x] **LeakCanary**
+- [ ] **Obfuscation (R8 Full)**
+- [x] **GitHub Actions**
 
 ## Getting Started
 
