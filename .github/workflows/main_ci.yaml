@@ -42,13 +42,13 @@ jobs:
         run: ./gradlew jacocoProjectCoverageReport dokkaHtmlMultiModule
 
       - name: Upload Jacoco Coverage Report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4.6.1
         with:
           name: jacoco-report
           path: build/reports/jacoco/jacocoProjectCoverageReport/html
 
       - name: Upload Dokka Documentation
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4.6.1
         with:
           name: dokka-docs
           path: build/dokka/htmlMultiModule
