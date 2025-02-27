@@ -24,6 +24,9 @@ dependencies {
 
     implementation(libs.androidx.navigation)
 
+    // debugImplementation because LeakCanary should only run in debug builds.
+    debugImplementation(libs.leakcanary.android)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
