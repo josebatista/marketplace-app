@@ -1,14 +1,9 @@
 name: Pull Request to Main
 
 on:
-  workflow_dispatch:
-    inputs:
-      enviroment:
-        description: 'Environment to run'
-        type: environment
-        required: true
   pull_request:
     branches: [ "main" ]
+  workflow_dispatch:
 
 jobs:
   build:
